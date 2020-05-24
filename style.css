@@ -1,0 +1,153 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    position:relative;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.gameapp{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content: space-evenly;
+    width:100vw;
+    top:-100vh;
+}
+
+.h1header{
+    text-align:center;
+    top:-125px;
+    font-size:50px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+header{
+    height:20vh;
+    width:100%;
+}
+
+.flag{
+    height:100%;
+    width:100%;
+    opacity:.8;
+    /* outline:2px solid red; */
+}
+
+.flagtopflex{
+    display:flex;
+    height:50%;
+    width:100%;
+}
+
+ .stars,.topstripes{
+    width:50%;
+    height:100%;
+    /* outline:1px solid blue; */
+} 
+
+.stars{
+    background:blue;
+    color:white;
+}
+
+.red, .white{
+    height:20%;
+    width:100%;
+    background:red;
+}
+
+.white{
+    background:white;
+}
+
+.bottomstripes{
+    height:50%;
+    width:100%;
+  
+}
+
+.overlayimg{
+    height:100vh;
+    width:100vw;
+    opacity:.7;
+}
+
+
+
+.candidateCard{
+    width:60%;
+    left:0%;
+    height:100px;
+    background:lightgray;
+    outline:1px solid black;
+    top:-400px;
+    transition:1s ease;
+}
+
+.hide-candidateCard{
+    top:300px;
+}
+
+.candidateCard >h3{
+    height:30%;
+    text-align:center;
+}
+
+.candidatecardbody{
+    display:flex;
+    height:70%;
+}
+
+.selectDivBtn{
+    text-align:center;
+    outline:1px solid black;
+    width:50%;
+    height:100%;
+    background:rgb(0,0,255,0.8)
+}
+
+.selectDivBtn:nth-child(2){
+    background:rgb(255,0,0,0.8);
+    cursor:pointer;
+}
+
+.thumbnail{
+    height:40px;
+}
+
+.grid{
+    height:300px;
+    width:300px;
+    /* display:flex;
+    flex-flow:row; */
+    display:grid;
+    grid-template-columns:repeat(3,1fr)
+}
+
+.square{
+    height:100px;
+    width:100px;
+    outline:1px solid black;
+    text-align:center;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.mole{
+    height:85px;
+    width:85px;
+    animation:grow 2s forwards;
+}
+
+@keyframes grow{
+    0%{height:0px;width:0px;}
+    20%{height:40px;width:40px;}
+    40%{height:80px;width:80px;}
+    60%{height:80px;width:80px;}
+    80%{height:40px;width:40px;}
+    100%{height:0px;width:0px;}
+}
