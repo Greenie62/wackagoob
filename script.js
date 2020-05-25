@@ -13,11 +13,22 @@ var scoreDOM=document.querySelector(".score");
 var timerDOM=document.querySelector(".time");
 var isRunning=false;
 
-var hitSounds=[new Audio("./assets/success.wav"), new Audio("./assets/success2.wav")];
-var missSounds=[new Audio("./assets/horn1.wav"), new Audio("./assets/horn2.wav")];
-var buzzer=new Audio("./assets/buzzer.wav")
-var tick=new Audio("./assets/click.wav")
+var hitBiden="./assets/bidenhit.jpg"
+var hitTrump="./assets/trumphit.jpg"
+var isTrump=false;
 
+var gameOverCard=document.querySelector('.gameoverCard');
+var gooberDOM=document.querySelector('.goober');
+var scoreTotal=document.querySelector(".scoreTotal")
+var refreshBtn=document.querySelector(".refreshBtn")
+
+
+var hitSounds=[new Audio("./assets/success.wav"), new Audio("./assets/success2.wav")];
+var missSounds=[new Audio("./assets/horn.wav"), new Audio("./assets/horn2.wav")];
+var buzzer=new Audio("./assets/buzzer.wav")
+var tick=new Audio("./assets/click.wav");
+var mallets=document.querySelectorAll(".malletDiv");
+var redX=document.querySelectorAll('.redX')
 
 candidateSelectBtns.forEach((btn,idx)=>{
     btn.onclick=()=>chooseCandidate(idx);
@@ -31,6 +42,7 @@ function chooseCandidate(arg){
             overlayImg.setAttribute("src",bidenPics[Math.random() * bidenPics.length | 0])
             candidateCard.classList.add("hide-candidateCard")
             candidateDOM.innerHTML='Biden'
+            gooberDOM.innerHTML="Biden"
            gameInterval=setInterval(()=>molePop(bidenPics),2500)
          
            runTimer()
@@ -40,8 +52,9 @@ function chooseCandidate(arg){
             overlayImg.setAttribute("src",trumpPics[Math.random() * trumpPics.length | 0])
             candidateCard.classList.add("hide-candidateCard")
             candidateDOM.innerHTML="Trump"
+            gooberDOM.innerHTML="Trump"
             gameInterval=setInterval(()=>molePop(trumpPics),2500)
-      
+            isTrump=true;
             runTimer()
 
 
@@ -54,38 +67,19 @@ function chooseCandidate(arg){
 
 function molePop(pics){
     let moleHole=Math.random() * squares.length |0
+    let moleHoleTwo=Math.random() * squares.length |0
+    let moleHoleThree=Math.random() * squares.length |0
     
-
-    if(timer < 20){
-        let moleHoleTwo=Math.random() * squares.length |0
-         squares[moleHoleTwo].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
-
-         setTimeout(()=>{
-            squares[moleHoleTwo].innerHTML=""
-
-
-         },2000)
-        }
-
-         if(timer < 10){
-            let moleHoleThree=Math.random() * squares.length |0
-             squares[moleHoleThree].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
+    squares[moleHole].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
+    squares[moleHoleTwo].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
+   squares[moleHoleThree].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
     
              setTimeout(()=>{
+                squares[moleHole].innerHTML=""
+                squares[moleHoleTwo].innerHTML=""
                 squares[moleHoleThree].innerHTML=""
-    
-    
-             },2000)
+                    },2000)
 
-}
- 
-    squares[moleHole].innerHTML=`<img src=${pics[pics.length * Math.random() | 0]} class="mole">`
-    console.log("wtf?")
-
-    setTimeout(()=>{
-        squares[moleHole].innerHTML=""
-
-    },2000)
 }
 
 
@@ -96,8 +90,11 @@ function runTimer(){
 
      if(timer <= 0){
         console.log("Game over!!")
+        timerDOM.innerHTML=0;
         clearInterval(gameInterval)
         buzzer.play()
+        scoreTotal.innerHTML=score;
+        gameOverCard.classList.add('show-gameover')
         return;
     }
 
@@ -127,6 +124,23 @@ squares.forEach((s,idx)=>{
             scoreDOM.innerHTML=score;
             moleId=idx;
             hitSounds[0].play()
+            if(!hitTrump){
+             Array.from(squares[idx].children)[0].setAttribute("src",hitBiden)
+            }
+            else{
+                Array.from(squares[idx].children)[0].setAttribute("src",hitTrump)
+
+            }
+            redX[idx].style.opacity=1;
+            // let malletDiv=document.createElement("div");
+            // malletDiv.className='malletDiv';
+            // let mallet=document.createElement("div");
+            // mallet.className="mallet"
+            // let handle=document.createElement("div");
+            // handle.className="handle"
+            // malletDiv.appendChild(handle)
+            // malletDiv.appendChild(mallet)
+            // squares[idx].appendChild(malletDiv)
            
     }
     else{
@@ -134,4 +148,16 @@ squares.forEach((s,idx)=>{
         missSounds[1].play()
     }
 
+    setTimeout(()=>{
+        redX[idx].style.opacity=0;
+
+    },1500)
+
 }
+
+
+
+refreshBtn.onclick=()=>{
+    window.location.reload()
+}
+

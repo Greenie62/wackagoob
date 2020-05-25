@@ -8,12 +8,10 @@
 
 .gameapp{
     height:100vh;
-    display:flex;
-    align-items:center;
-    flex-direction:column;
-    justify-content: space-evenly;
+
     width:100vw;
     top:-100vh;
+    text-align:center;
 }
 
 .h1header{
@@ -85,6 +83,7 @@ header{
     outline:1px solid black;
     top:-400px;
     transition:1s ease;
+    left:20%;
 }
 
 .hide-candidateCard{
@@ -118,16 +117,49 @@ header{
     height:40px;
 }
 
-.grid{
+.malletDiv{
+    display:flex;
+    width:100px;
+    height:50px;
+    animation:hammer 1s infinite;
+    opacity:0;
+    z-index:1;
+}
+
+@keyframes hammer{
+    0%{transform-origin:right;transform:rotate(30deg)}
+    100%{transform-origin:right;transform:rotate(-30deg)}
+}
+
+.mallet{
+    width:30%;
+    height:100%;
+    background:brown;
+}
+
+.handle{
+    width:70%;
+    height:20%;
+    background:brown;
+    top:15px;
+}
+
+.grid, .overlayX{
     height:300px;
     width:300px;
     /* display:flex;
     flex-flow:row; */
     display:grid;
-    grid-template-columns:repeat(3,1fr)
+    grid-template-columns:repeat(3,1fr);
+    left:10%;
 }
 
-.square{
+.overlayX{
+    top:-300px;
+    pointer-events:none;
+}
+
+.square, .overlay{
     height:100px;
     width:100px;
     outline:1px solid black;
@@ -142,6 +174,31 @@ header{
     width:85px;
     animation:grow 2s forwards;
 }
+
+.redX{
+    font-size:75px;
+    color:red;
+    opacity:0;
+}
+
+.gameoverCard{
+    transition:1s ease;
+    width:50%;
+    text-align:center;
+    left:25%;
+    border:1px solid black;
+    border-radius:5%;
+    background:lightgray;
+}
+
+.show-gameover{
+    top:-1200px
+}
+
+.refreshBtn{
+    background:rgb(0,0,255,.9)
+}
+
 
 @keyframes grow{
     0%{height:0px;width:0px;}
