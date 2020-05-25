@@ -135,6 +135,7 @@ header{
     width:30%;
     height:100%;
     background:brown;
+    left:100px;
 }
 
 .handle{
@@ -150,8 +151,9 @@ header{
     /* display:flex;
     flex-flow:row; */
     display:grid;
+    left:50px;
     grid-template-columns:repeat(3,1fr);
-    left:10%;
+    /* left:10%; */
 }
 
 .overlayX{

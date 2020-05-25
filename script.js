@@ -124,14 +124,16 @@ squares.forEach((s,idx)=>{
             scoreDOM.innerHTML=score;
             moleId=idx;
             hitSounds[0].play()
-            if(!hitTrump){
+            if(!isTrump){
              Array.from(squares[idx].children)[0].setAttribute("src",hitBiden)
             }
             else{
                 Array.from(squares[idx].children)[0].setAttribute("src",hitTrump)
 
             }
-            redX[idx].style.opacity=1;
+         
+                redX[idx].style.opacity=1;
+            
             // let malletDiv=document.createElement("div");
             // malletDiv.className='malletDiv';
             // let mallet=document.createElement("div");
@@ -149,7 +151,10 @@ squares.forEach((s,idx)=>{
     }
 
     setTimeout(()=>{
+      
         redX[idx].style.opacity=0;
+       
+        
 
     },1500)
 
